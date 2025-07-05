@@ -21,8 +21,6 @@ BEGIN
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
-            ROWTERMINATOR = '\n',
-            CODEPAGE = '65001',
             TABLOCK
         );
 
@@ -39,8 +37,6 @@ BEGIN
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
-            ROWTERMINATOR = '\n',
-            CODEPAGE = '65001',
             TABLOCK
         );
 
@@ -72,4 +68,28 @@ FROM [Bronze].[England_CSV];
 
 SELECT * 
 FROM [Bronze].[England_2_CSV];
+
+
+
+
+select League,count(League)
+from [Bronze].[England_2_CSV]
+group by League;
+
+
+
+select League,count(League)
+from [Bronze].[England_CSV]
+group by League;
+
+
+
+select * 
+from [Bronze].[England_2_CSV]
+where League != 'English Second';
+
+select * 
+from [Bronze].[England_CSV]
+where League != 'English Second';
+
 
