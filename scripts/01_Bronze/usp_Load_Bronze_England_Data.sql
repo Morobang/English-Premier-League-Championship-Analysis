@@ -17,7 +17,7 @@ BEGIN
         TRUNCATE TABLE [Bronze].[England_CSV];
 
         BULK INSERT [Bronze].[England_CSV]
-        FROM 'C:\\Users\\Morobang\\Documents\\GitHub\\English Premier League & Championship Analysis\\data\\England CSV.csv'
+        FROM 'C:\\Users\\Morobang\\Documents\\GitHub\\English Premier League & Championship Analysis\\scripts\\01_Bronze\\Correctly_Formated Dataset\\England CSV.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
@@ -33,7 +33,7 @@ BEGIN
         TRUNCATE TABLE [Bronze].[England_2_CSV];
 
         BULK INSERT [Bronze].[England_2_CSV]
-        FROM 'C:\\Users\\Morobang\\Documents\\GitHub\\English Premier League & Championship Analysis\\data\\England 2 CSV.csv'
+        FROM 'C:\\Users\\Morobang\\Documents\\GitHub\\English Premier League & Championship Analysis\\scripts\\01_Bronze\\Correctly_Formated Dataset\\England 2 CSV.csv'
         WITH (
             FIRSTROW = 2,
             FIELDTERMINATOR = ',',
