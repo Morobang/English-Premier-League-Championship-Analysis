@@ -60,3 +60,8 @@ GO
 
 PRINT 'All operations completed successfully';
 GO
+
+
+
+SELECT *
+FROM information_schema.schemata;
