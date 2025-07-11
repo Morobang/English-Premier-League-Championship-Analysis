@@ -1,34 +1,47 @@
+IF EXISTS (SELECT * FROM sys.tables WHERE name = 'FactMatches' AND schema_id = SCHEMA_ID('Gold'))
+BEGIN
+    PRINT 'Dropping existing Gold.FactMatches table...'
+    DROP TABLE Gold.FactMatches;
+END
+GO
+
+
+
+
+
+
+
 CREATE TABLE Gold.FactMatches (
     MatchSK INT IDENTITY(1,1) PRIMARY KEY,
-    DateSK INT FOREIGN KEY REFERENCES Gold.DimDate(DateSK),
-    HomeTeamSK INT FOREIGN KEY REFERENCES Gold.DimTeam(TeamSK),
-    AwayTeamSK INT FOREIGN KEY REFERENCES Gold.DimTeam(TeamSK),
-    RefereeSK INT FOREIGN KEY REFERENCES Gold.DimReferee(RefereeSK),
+    DateSK INT NOT NULL FOREIGN KEY REFERENCES Gold.DimDate(DateSK),
+    HomeTeamSK INT NOT NULL FOREIGN KEY REFERENCES Gold.DimTeam(TeamSK),
+    AwayTeamSK INT NOT NULL FOREIGN KEY REFERENCES Gold.DimTeam(TeamSK),
+    RefereeSK INT NULL FOREIGN KEY REFERENCES Gold.DimReferee(RefereeSK),
     
-    -- Core facts (available in both tables)
+    -- Match facts
     FullTimeHomeGoals INT NOT NULL,
     FullTimeAwayGoals INT NOT NULL,
+    HalfTimeHomeGoals INT NOT NULL,
+    HalfTimeAwayGoals INT NOT NULL,
     
-    -- Available in main table only
-    HalfTimeHomeGoals INT,
-    HalfTimeAwayGoals INT,
-    HomeShots INT,
-    AwayShots INT,
-    HomeShotsOnTarget INT,
-    AwayShotsOnTarget INT,
-    HomeFouls INT,
-    AwayFouls INT,
-    HomeCorners INT,
-    AwayCorners INT,
-    HomeYellowCards INT,
-    AwayYellowCards INT,
-    HomeRedCards INT,
-    AwayRedCards INT,
+    -- Detailed stats
+    HomeShots INT NOT NULL,
+    AwayShots INT NOT NULL,
+    HomeShotsOnTarget INT NOT NULL,
+    AwayShotsOnTarget INT NOT NULL,
+    HomeFouls INT NOT NULL,
+    AwayFouls INT NOT NULL,
+    HomeCorners INT NOT NULL,
+    AwayCorners INT NOT NULL,
+    HomeYellowCards INT NOT NULL,
+    AwayYellowCards INT NOT NULL,
+    HomeRedCards INT NOT NULL,
+    AwayRedCards INT NOT NULL,
     
-    -- Common metadata
-    Division NVARCHAR(50),
-    Season NVARCHAR(10),
-    SourceFile NVARCHAR(255),
+    -- Metadata
+    Division NVARCHAR(50) NOT NULL,
+    Season NVARCHAR(10) NOT NULL,
+    SourceFile NVARCHAR(255) NOT NULL,
     LoadTimestamp DATETIME2 DEFAULT SYSUTCDATETIME(),
     
     -- Derived columns
@@ -40,5 +53,12 @@ CREATE TABLE Gold.FactMatches (
             WHEN FullTimeHomeGoals < FullTimeAwayGoals THEN 'Away Win'
             ELSE 'Draw'
         END
-    )
+    ),
+    
+    -- Indexes for performance
+    INDEX IX_FactMatches_DateSK NONCLUSTERED (DateSK),
+    INDEX IX_FactMatches_HomeTeamSK NONCLUSTERED (HomeTeamSK),
+    INDEX IX_FactMatches_AwayTeamSK NONCLUSTERED (AwayTeamSK),
+    INDEX IX_FactMatches_Season NONCLUSTERED (Season)
 );
+PRINT 'Created Gold.FactMatches table (complete stats only)';
