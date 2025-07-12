@@ -1,9 +1,11 @@
--- Populate fact tables in a transaction for safety
+-- =============================================
+-- Populate Gold.FactMatches from Silver.Matches
+-- =============================================
 BEGIN TRY
     BEGIN TRANSACTION;
-    
-    -- Populate complete matches fact table
+
     PRINT 'Populating Gold.FactMatches from Silver.Matches (complete stats)...';
+
     INSERT INTO Gold.FactMatches (
         DateSK, HomeTeamSK, AwayTeamSK, RefereeSK,
         FullTimeHomeGoals, FullTimeAwayGoals,
@@ -45,5 +47,26 @@ BEGIN TRY
     JOIN Gold.DimTeam ht ON sm.HomeTeam = ht.TeamName
     JOIN Gold.DimTeam at ON sm.AwayTeam = at.TeamName
     LEFT JOIN Gold.DimReferee r ON sm.Referee = r.RefereeName;
+
+    DECLARE @msg NVARCHAR(100);
+    SET @msg = 'Inserted ' + CAST(@@ROWCOUNT AS NVARCHAR(10)) + ' rows into Gold.FactMatches';
+    PRINT @msg;
+
+    COMMIT TRANSACTION;
+    PRINT 'Transaction committed successfully.';
+
+END TRY
+BEGIN CATCH
+    PRINT 'Error: ' + ERROR_MESSAGE();
+    ROLLBACK TRANSACTION;
+END CATCH;
+
     
-    PRINT CONCAT('Inserted ', @@ROWCOUNT, ' rows into Gold.FactMatches');
+DECLARE @rowcountMessage NVARCHAR(100);
+SET @rowcountMessage = 'Inserted ' + CAST(@@ROWCOUNT AS NVARCHAR(10)) + ' rows into Gold.FactMatches';
+PRINT @rowcountMessage;
+
+
+
+select *
+from Gold.FactMatches;

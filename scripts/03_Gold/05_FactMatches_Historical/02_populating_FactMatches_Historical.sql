@@ -1,5 +1,11 @@
-    -- Populate historical matches fact table
+-- =============================================
+-- Populate Gold.FactMatches_Historical from Silver.Matches_Historical
+-- =============================================
+BEGIN TRY
+    BEGIN TRANSACTION;
+
     PRINT 'Populating Gold.FactMatches_Historical from Silver.Matches_Historical (limited stats)...';
+
     INSERT INTO Gold.FactMatches_Historical (
         DateSK, HomeTeamSK, AwayTeamSK, RefereeSK,
         FullTimeHomeGoals, FullTimeAwayGoals,
@@ -21,19 +27,24 @@
     JOIN Gold.DimTeam ht ON sm.HomeTeam = ht.TeamName
     JOIN Gold.DimTeam at ON sm.AwayTeam = at.TeamName
     LEFT JOIN Gold.DimReferee r ON sm.Referee = r.RefereeName;
-    
-    PRINT CONCAT('Inserted ', @@ROWCOUNT, ' rows into Gold.FactMatches_Historical');
-    
+
+    DECLARE @msg NVARCHAR(100);
+    SET @msg = 'Inserted ' + CAST(@@ROWCOUNT AS NVARCHAR(10)) + ' rows into Gold.FactMatches_Historical';
+    PRINT @msg;
+
     COMMIT TRANSACTION;
     PRINT 'Gold layer population completed successfully';
+
 END TRY
 BEGIN CATCH
     IF @@TRANCOUNT > 0
         ROLLBACK TRANSACTION;
-    
+
     PRINT 'Error occurred during Gold layer population:';
     PRINT ERROR_MESSAGE();
-    
-    -- Re-throw the error
+
+    -- Re-throw the error properly
     THROW;
 END CATCH;
+
+
