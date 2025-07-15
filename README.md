@@ -43,9 +43,6 @@ A comprehensive data analysis project exploring 30 years of match results and st
 
 
 
-Here's a professional `README.md` file for your **English Premier League Championship Analysis** GitHub repository, structured to clearly explain the project's purpose, features, and setup:
-
-```markdown
 # 🏆 English Premier League Championship Analysis
 
 ![Premier League Logo](https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/1200px-Premier_League_Logo.svg.png)
