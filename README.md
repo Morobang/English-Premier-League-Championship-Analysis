@@ -1,36 +1,51 @@
-# 🏆 English Premier League & Championship Analysis
+#  English Premier League & Championship Analysis
 
-A comprehensive data analysis project exploring 30 years of match results and statistics from the English Premier League (EPL) and Championship (1993/94 – 2024/25 Mid Season). The project utilizes **Python**, **SQL**, and **Power BI** to extract insights, visualize trends, and understand the evolution of English football.
+![Premier League Logo](https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/1200px-Premier_League_Logo.svg.png)
 
----
+A comprehensive data analytics project exploring over 30 years of match results and statistics from the English Premier League (EPL) and EFL Championship (1993/94 – 2024/25 Mid Season). The analysis covers thousands of matches using a structured approach built on SQL, Python, and Power BI.
 
-## 📊 Dataset Overview
-
-- **Source:** [12Xpert](https://x.com/12Xpert) | [Website](http://12xpert.co.uk/)
-- **Time Period:** 1993/94 – 2024/25 (Mid Season)
-- **Leagues:** English Premier League & Championship
-- **Records:** Thousands of match stats with 25 key variables including goals, shots, fouls, cards, and more.
-
-### 📁 Key Columns:
-- `Date`, `Season`, `HomeTeam`, `AwayTeam`
-- `FTH Goals`, `FTA Goals`, `FT Result`
-- `HTH Goals`, `HTA Goals`, `HT Result`
-- `H Shots`, `A Shots`, `H SOT`, `A SOT`
-- `H Fouls`, `A Fouls`, `H Corners`, `A Corners`
-- `H Yellow`, `A Yellow`, `H Red`, `A Red`
-- `League`, `Referee`, `Display_Order`
+This repository serves as the central hub for the project, containing scripts, datasets, visualizations, and documentation — all organized following a modern data architecture and engineering workflow.
 
 ---
 
-## 🧰 Tools & Technologies
+## Project Overview & Structure
 
-- **Python** – For data cleaning, exploration, and visualizations (Pandas, Matplotlib, Seaborn, Plotly)
-- **SQL** – For querying data and generating insights
-- **Power BI** – For creating interactive dashboards and reports
 
+This project is built to transform raw English football match data into structured, analytical models using a **layered data architecture** and modern data tooling.
+
+-  **Primary Focus:** SQL-driven data transformation and modeling (Bronze → Silver → Gold)
+-  **Support Tools:** Python for exploratory analysis and Power BI for dashboards
+-  **Objective:** Develop a reusable analytics workflow to explore trends, team performance, referee patterns, and anomalies over a 30+ year span
+
+Each major folder in the project has a dedicated `README.md` that explains its purpose in detail.
+
+```
+
+EPL\_Analysis/
+├── data/                    # Raw and cleaned datasets (EPL & Championship)
+│   ├── epl\_matches\_raw\.csv
+│   └── epl\_teams\_processed.csv
+
+├── scripts/                 # SQL and Python scripts for layered ETL
+│   ├── 01\_Bronze/           # Ingest raw CSVs into staging tables
+│   ├── 02\_Silver/           # Clean, transform, validate data
+│   ├── 03\_Gold/             # Create analytical models (facts, dimensions)
+│   └── 04\_Utils/            # Reusable Python scripts, SQL queries, metadata
+
+├── notebooks/               # Jupyter notebooks for interactive data exploration
+│   ├── 1\_Data\_Cleaning.ipynb
+│   └── 2\_Visual\_Analysis.ipynb
+
+├── powerbi/                 # Power BI dashboards and exported reports
+│   └── epl\_dashboard.pbix
+
+├── docs/                    # Project documentation and research notes
+
+└── README.md                # Main project overview (you’re here)
+```
 ---
 
-## ✅ Project Goals
+## Project Goals
 
 - Clean and preprocess the dataset
 - Analyze trends in match results, team performance, and referee behavior
@@ -42,90 +57,61 @@ A comprehensive data analysis project exploring 30 years of match results and st
 
 
 
+## Tools & Technologies
 
-# 🏆 English Premier League Championship Analysis
+The project is powered by the following tools:
 
-![Premier League Logo](https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/1200px-Premier_League_Logo.svg.png)
+- **SQL Server** – Core data transformation and modeling (main tool)
+- **Python (Pandas, Seaborn, Matplotlib, Plotly)** – Data exploration & visualization
+- **Jupyter Notebooks** – Interactive analysis and documentation
+- **Power BI** – Interactive dashboards and business intelligence reporting
 
-A data analysis project exploring trends, statistics, and insights from the English Premier League (EPL) championships. Built with Python, Pandas, and data visualization tools.
+**Tool Setup Guide:**  
+All tool installation steps are documented in a separate repo:  
+[DevToolkit Repository](https://github.com/Morobang/DevToolkit)
 
-## 📌 Features
-
-- **Historical Data Analysis**: Compare team performance across seasons (2010-2023)
-- **Key Metrics**: Goals scored/conceded, possession, shots on target, and more
-- **Interactive Visualizations**: Matplotlib/Seaborn dashboards for trend analysis
-- **Predictive Modeling**: (Optional) Machine learning to predict match outcomes
-
-## 📂 Project Structure
-
-```
-EPL_Analysis/
-├── data/                    # Raw and cleaned datasets
-│   ├── epl_matches_raw.csv
-│   └── epl_teams_processed.csv
-├── notebooks/               # Jupyter notebooks for analysis
-│   ├── 1_Data_Cleaning.ipynb
-│   └── 2_Visual_Analysis.ipynb
-├── scripts/                 # Python modules
-│   ├── data_cleaner.py
-│   └── visualization.py
-├── outputs/                 # Generated graphs/reports
-│   └── top_teams_2023.png
-└── README.md
-```
-
-## 🛠️ Setup & Installation
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Morobang/English-Premier-League-Championship-Analysis.git
-   cd English-Premier-League-Championship-Analysis
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt  # pandas, numpy, matplotlib, seaborn
-   ```
-
-3. **Run Jupyter notebooks**:
-   ```bash
-   jupyter notebook
-   ```
-
-## 📊 Sample Analysis
-
-### Top 5 Teams by Win Rate (2022-23)
-![Win Rate Visualization](outputs/top_teams_2023.png)
-
-### Key Findings:
-- Manchester City dominated possession (65% avg) and goals (94)
-- Arsenal showed highest improvement in defense (goals conceded ↓32%)
-
-## 🤝 How to Contribute
-1. Fork the repository
-2. Add your analysis in a new notebook (`notebooks/3_Your_Analysis.ipynb`)
-3. Submit a pull request
-
-## 📜 Data Sources
-- [Official Premier League Stats](https://www.premierleague.com/stats)
-- [Kaggle EPL Datasets](https://www.kaggle.com/datasets)
-
-## 📧 Contact
-For questions/suggestions:  
-[Your Email] | [Your LinkedIn]
-```
+- [Python Setup](https://github.com/Morobang/DevToolkit/tree/main/Python)
+- [Microsoft SQL Server](https://github.com/Morobang/DevToolkit/tree/main/Microsoft%20SQL%20Server)
+- [SQL Scripts](https://github.com/Morobang/DevToolkit/tree/main/SQL)
+- [Power BI Setup](https://github.com/Morobang/DevToolkit/tree/main/Power%20Bi)
+- [Jupyter Setup](https://github.com/Morobang/DevToolkit/tree/main/Jupyter)
 
 ---
 
-### Key Highlights:
-1. **Visual Appeal**: Premier League logo and structured sections
-2. **Clear Navigation**: Project structure tree for easy file locating
-3. **Reproducibility**: Step-by-step setup instructions
-4. **Showcase Ready**: Embedded sample visualization and findings
-5. **Community Focus**: Contribution guidelines and data sources
+## Data Architecture – Medallion Model
 
-Would you like me to:
-- Add a **license badge** (MIT/GPL)?
-- Include a **more detailed technical stack** (e.g., Plotly for interactivity)?
-- Attach **sample notebook snippets**?
+The project follows a **Medallion Architecture** with three layers of data:
 
+- **Bronze Layer**: Raw data ingested from CSV files
+- **Silver Layer**: Cleaned and structured tables with validated types and formats
+- **Gold Layer**: Final analytical models (fact and dimension tables) for analysis and reporting
+
+This approach enables consistent data quality, maintainability, and traceability across the data lifecycle.
+
+---
+
+
+## 🧭 Project Roadmap
+
+| Phase                | Status   | Description |
+|---------------------|----------|-------------|
+| Setup Repository    | ✅ Done  | Project structure and tooling organized |
+| Load Raw Data       | ✅ Done  | CSVs imported and staged in Bronze Layer |
+| Bronze Layer        | ✅ Done  | Initial staging with minimal transformation |
+| Silver Layer        | 🔄 WIP   | Cleaning, validation, schema alignment |
+| Gold Layer          | 🔄 WIP   | Creating fact and dimension tables |
+| Python Exploration  | 🔄 WIP   | Basic analysis and visualizations |
+| Power BI Dashboard  | 🔄 Planned | Create interactive reports |
+| Folder READMEs      | 🔄 Planned | Explain each section in detail |
+
+---
+
+## 📧 Contact
+
+**Tshigidimisa Morobang**  
+📧 morobangtshigidimisa@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/morobang-tshigidimisa-84172b26b)
+
+---
+
+> 📄 *For specific code, setup instructions, or detailed analysis — please refer to the README inside each folder.*
