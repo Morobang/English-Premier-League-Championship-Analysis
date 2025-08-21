@@ -6,7 +6,7 @@ This document outlines key analytical requirements for exploring English footbal
 ## 1. Team Performance Analysis
 
 ### 1.1 Team Effectiveness
-- [ ] Calculate and compare win percentages for all teams
+- [x] Calculate and compare win percentages for all teams
 - [ ] Identify teams with strongest home/away performance differentials
 - [ ] Measure team consistency across multiple seasons
 - [ ] Rank teams by goal difference metrics
