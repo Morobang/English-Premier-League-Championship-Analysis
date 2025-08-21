@@ -1,0 +1,5 @@
+2025-08-16 06:54:09 [INFO] [football_pipeline] - Logging module initialized.
+2025-08-16 06:54:09 [DEBUG] [football_pipeline] - This is a debug message for developers.
+2025-08-16 06:54:09 [WARNING] [football_pipeline] - This is a warning message.
+2025-08-16 06:54:09 [ERROR] [football_pipeline] - This is an error message.
+2025-08-16 06:54:09 [CRITICAL] [football_pipeline] - This is a critical message.
